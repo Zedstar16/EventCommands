@@ -1,0 +1,7 @@
+name: EventCommands
+main: Zedstar16\EventCommands\Main
+version: 1.0
+api: 3.0.0
+author: Zedstar16
+description: Plugin than runs configured comands when a certain event occurs
+website: https://github.com/Zedstar16/EventCommands

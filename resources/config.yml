@@ -1,0 +1,44 @@
+#Event Commands configuration file
+
+#There must be a command executor inside the command however just ONE
+#Command executors are:
+
+# @console Command run as console
+# @op      Command run as if the player is OP
+# @p       Command run normally as the player
+
+
+#There are tags you can use inside the command:
+# {player}  The players name
+# {level}   The name of the world the player is in
+# {tag}     The NameTag/nickname of the player
+# {x}       The players X coord value
+# {y}       The players Y coord value
+# {z}       The players Z coord value
+
+
+# To format the command, use the TAB button on your keyboard instead of a space before the dash
+# Write the command you want to be executed,
+
+#An example event showing how to format it:
+ExampleEvent:
+  - "say Hello World @op"
+  - "msg {player} Hi @console"
+
+PlayerDeath:
+
+
+PlayerGamemodeChange:
+
+
+#When a player changes world
+PlayerLevelChange:
+
+
+PlayerExhaust:
+
+
+PlayerJoin:
+
+
+PlayerRespawn:
