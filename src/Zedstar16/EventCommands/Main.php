@@ -104,13 +104,6 @@ class Main extends PluginBase implements Listener
         }
     }
 
-    public function hasCmd(String $event): bool
-    {
-        if (!empty($this->getConfig()->get($event))) {
-            return true;
-        } else return false;
-    }
-
     public function executeCommands(String $event, Player $player)
     {
         $commands = $this->getConfig()->get($event);
