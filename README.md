@@ -1,15 +1,33 @@
 # EventCommands
 This is a plugin that allows you to setup commands to run when certain ingame events occur
+
+The commands must be configured in the config.yml, which will appear in the plugins folder when the server is restarted after the plugin is added.
+
 You can configure commands for:
 - Player Join
 - Player Death
 - Player Gamemode Change
 - Player Level Change (world)
 - Player Respawn
-- Player Exhaust
+- Player Exhaust (run out of food)
 
-If you would like more configurable events to be added, simply create an issue in the tracker.
 
-You can configure the commands to be run as console, as op player , or as normal player
+# Command Tags & executors
 
-You can also add tags such as player name, nick, world, and x y z coords in the commands
+ You can execute the command as:
+
+- @p (the player without special priveledges)
+- @op (runs command like the player is op)
+- @console (runs command as console
+
+ You can use these tags in the command:
+
+- {player} (the players name)
+- {x}, {y}, {z} (the players X, Y and Z coordinates
+- {tag} (the players tag, nickname/display name)
+- {level} (the world the player is currently in)
+ 
+# Enhancements
+
+If there are any problems or you would like anything additional to be added to the plugin such as more events, or more command tags, 
+simply create an issue
