@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Zedstar16\EventCommands;
 
 use pocketmine\command\ConsoleCommandSender;
+use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityLevelChangeEvent;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
@@ -26,7 +27,7 @@ class Main extends PluginBase implements Listener
         $this->saveResource("config.yml");
         $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $events = ["PlayerDeath", "PlayerGamemodeChange", "PlayerLevelChange", "PlayerExhaust", "PlayerJoin", "PlayerRespawn"];
+        $events = ["PlayerDeath", "PlayerGamemodeChange", "PlayerLevelChange", "PlayerExhaust", "PlayerJoin", "PlayerRespawn", "PlayerFallInVoid"];
         foreach ($events as $event) {
             $e = $this->getConfig()->get($event);
             if (!empty($e)) {
@@ -51,6 +52,20 @@ class Main extends PluginBase implements Listener
         $search = ["{player}", "{x}", "{y}", "{z}", "{tag}", "{level}"];
         $replace = ["\"" . $player->getName() . "\"", $player->getX(), $player->getY(), $player->getZ(), $player->getDisplayName(), $player->getLevel()->getName()];
         return str_replace($search, $replace, $cmd);
+    }
+
+    public function onFallInVoid(EntityDamageEvent $event)
+    {
+        $e = "PlayerFallInVoid";
+        $entity = $event->getEntity();
+        if(!$entity instanceof Player){
+            return;
+        }
+        if($event->getCause() === EntityDamageEvent::CAUSE_VOID) {
+            if (isset($this->hasData[$e])) {
+                $this->executeCommands($e, $entity->getPlayer());
+            }
+        }
     }
 
     public function onDeath(PlayerDeathEvent $event)
@@ -102,6 +117,13 @@ class Main extends PluginBase implements Listener
         if (isset($this->hasData[$e])) {
             $this->executeCommands($e, $event->getPlayer());
         }
+    }
+
+    public function hasCmd(String $event): bool
+    {
+        if (!empty($this->getConfig()->get($event))) {
+            return true;
+        } else return false;
     }
 
     public function executeCommands(String $event, Player $player)
