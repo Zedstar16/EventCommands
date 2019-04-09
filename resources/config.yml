@@ -25,6 +25,9 @@ ExampleEvent:
   - "say Hello World @op"
   - "msg {player} Hi @console"
 
+PlayerFallInVoid:
+
+
 PlayerDeath:
 
 
