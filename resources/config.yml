@@ -28,6 +28,9 @@ ExampleEvent:
 PlayerFallInVoid:
 
 
+PlayerQuit:
+
+
 PlayerDeath:
 
 
