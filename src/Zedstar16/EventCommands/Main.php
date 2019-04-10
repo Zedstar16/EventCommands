@@ -12,6 +12,7 @@ use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerExhaustEvent;
 use pocketmine\event\player\PlayerGameModeChangeEvent;
 use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\player\PlayerRespawnEvent;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
@@ -27,7 +28,7 @@ class Main extends PluginBase implements Listener
         $this->saveResource("config.yml");
         $this->saveDefaultConfig();
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
-        $events = ["PlayerDeath", "PlayerGamemodeChange", "PlayerLevelChange", "PlayerExhaust", "PlayerJoin", "PlayerRespawn", "PlayerFallInVoid"];
+        $events = ["PlayerDeath", "PlayerGamemodeChange", "PlayerLevelChange", "PlayerExhaust", "PlayerJoin", "PlayerRespawn", "PlayerFallInVoid", "PlayerQuit"];
         foreach ($events as $event) {
             $e = $this->getConfig()->get($event);
             if (!empty($e)) {
@@ -65,6 +66,13 @@ class Main extends PluginBase implements Listener
             if (isset($this->hasData[$e])) {
                 $this->executeCommands($e, $entity->getPlayer());
             }
+        }
+    }
+
+    public function onQuit(PlayerQuitEvent $event){
+        $e = "PlayerQuit";
+        if (isset($this->hasData[$e])) {
+            $this->executeCommands($e, $event->getPlayer());
         }
     }
 
@@ -152,3 +160,4 @@ class Main extends PluginBase implements Listener
     }
 
 }
+
