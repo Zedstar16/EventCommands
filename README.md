@@ -9,7 +9,9 @@ This is a plugin that allows you to setup commands to run when certain ingame ev
 The commands must be configured in the config.yml, which will appear in the plugins folder when the server is restarted after the plugin is added.
 
 You can configure commands for:
+- Player Fall in Void
 - Player Join
+- Player Quit
 - Player Death
 - Player Gamemode Change
 - Player Level Change (world)
